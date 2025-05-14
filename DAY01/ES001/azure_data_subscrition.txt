@@ -1,0 +1,4 @@
+Name                          CloudName    SubscriptionId                        TenantId                              State    IsDefault
+----------------------------  -----------  ------------------------------------  ------------------------------------  -------  -----------
+Pagamento in base al consumo  AzureCloud   8855b22a-640a-41db-bdc5-b423cb3e8feb  6c7d8b3b-8c71-4013-be58-e78af03cde75  Enabled  True
+Sottoscrizione di Azure 1     AzureCloud   2989b443-d263-4c84-8dd6-00b7aa9ffd44  6c7d8b3b-8c71-4013-be58-e78af03cde75  Enabled  False
