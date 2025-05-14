@@ -12,5 +12,9 @@ az account list-locations -o table
 
 azd auth login
 
+# Deploy
 azd up -e ES001-dev
+
+# Distruzione
+azd down -e ES001-dev
 ```

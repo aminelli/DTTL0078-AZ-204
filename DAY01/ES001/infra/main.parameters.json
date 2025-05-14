@@ -16,6 +16,9 @@
     },
     "appServicePlanName": {
       "value": "${APP_SERVICE_PLAN_NAME}"
+    },
+    "appServicePlanSku": {
+      "value": "${APP_SERVICE_PLAN_SKU}"
     }
   }
 }

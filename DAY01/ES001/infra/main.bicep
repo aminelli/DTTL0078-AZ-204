@@ -21,6 +21,7 @@ param location string
 param resourceGroupName string = ''
 param appServiceName string = ''
 param appServicePlanName string = ''
+param appServicePlanSku string = ''
 
 var abbrs = loadJsonContent('./abbreviations.json')
 
@@ -73,7 +74,7 @@ module appServicePlan './core/host/appserviceplan.bicep' = {
     location: location
     tags: tags
     sku: {
-      name: 'B1'
+      name: !empty(appServicePlanSku) ? appServicePlanSku : 'F1'
     }
   }
 }
