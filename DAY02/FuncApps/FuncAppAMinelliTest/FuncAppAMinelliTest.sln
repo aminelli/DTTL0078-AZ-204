@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuncAppAMinelliTest", "FuncAppAMinelliTest.csproj", "{4633DC7E-B4C9-837A-FEE0-D73413655AA3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4633DC7E-B4C9-837A-FEE0-D73413655AA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4633DC7E-B4C9-837A-FEE0-D73413655AA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4633DC7E-B4C9-837A-FEE0-D73413655AA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4633DC7E-B4C9-837A-FEE0-D73413655AA3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17A18D9C-EF4A-4671-A4D9-B2C2759DA8F8}
+	EndGlobalSection
+EndGlobal
