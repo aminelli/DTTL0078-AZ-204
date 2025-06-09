@@ -5,6 +5,7 @@ using Azure.Storage;
 using Azure.Storage.Blobs;
 
 
+
 namespace StorageManagement
 {
 
@@ -14,20 +15,22 @@ namespace StorageManagement
         const string AZURE_CLIENT_SECRET = "";
 
         const string ACCOUNT_KEY_SAS = "";
-
+        const string ACCOUNT_SAS_URL = "";
 
         static void Main(string[] args) {
             string storageAccountName = "sacorsodttl0078sample001";
 
             // Scenario 1
-            /*
-            var client = GetBlobServiceClient(storageAccountName);
-            CreateRootContainer(client, "test");
-            */
+            var client1 = GetBlobServiceClient(storageAccountName);
+            CreateRootContainer(client1, "test");
 
             // Scenario 2
-            var client = GetBlobServiceClientSecret(storageAccountName);
-            CreateRootContainer(client, "testsecret");
+            var client2 = GetBlobServiceClientSecret(storageAccountName);
+            CreateRootContainer(client2, "testsecret");
+            
+            // Scenario 3
+            var client3 = GetBlobServiceClientSAS(storageAccountName);
+            CreateRootContainer(client2, "testsas");
 
         }
 
@@ -64,7 +67,7 @@ namespace StorageManagement
         private static BlobServiceClient GetBlobServiceClientSAS(string storageAccountName)
         {
              
-
+            /*
             var credential = new StorageSharedKeyCredential(
                     storageAccountName,
                     ACCOUNT_KEY_SAS
@@ -73,6 +76,11 @@ namespace StorageManagement
             BlobServiceClient client = new(
                     new Uri($"https://{storageAccountName}.blob.core.windows.net"),
                     credential
+                );
+            */
+
+            BlobServiceClient client = new(
+                new Uri(ACCOUNT_SAS_URL)
                 );
 
             return client;
