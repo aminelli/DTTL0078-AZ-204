@@ -23,10 +23,10 @@ namespace StorageTableQueue
         const string ACCOUNT_KEY_SAS = "";
         const string ACCOUNT_SAS_URL = "";
 
-        const string ACCOUNT_NAME = "sacorsodttl0078sample001";
+        const string ACCOUNT_NAME = "";
         const string ACCOUNT_KEY = "";
 
-        const string CONN_STRING_MODEL = "DefaultEndpointsProtocol=https;AccountName={yourstorageaccount};AccountKey={yourkey};EndpointSuffix=core.windows.net";
+        const string CONN_STRING_MODEL = "";
 
 
         public static async Task Main(string[] args)
@@ -39,15 +39,19 @@ namespace StorageTableQueue
 
             try
             {
-
+                await accountExample.QueueTestSend();
+                await accountExample.QueueTestReceived();
             }
-            catch (Exception)
+            catch (RequestFailedException ex)
             {
-
-                Console.WriteLine("Errore");
+                Console.WriteLine(
+                    "HTTP error code {0}: {1}",
+                    ex.Status,
+                    ex.ErrorCode
+                    );
             }
 
-
+            Thread.Sleep(5000);
 
         }
     

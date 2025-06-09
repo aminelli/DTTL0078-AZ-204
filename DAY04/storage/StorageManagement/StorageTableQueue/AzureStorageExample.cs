@@ -7,6 +7,8 @@ namespace StorageTableQueue
     {
 
         public string ConnectionString { get; private set; }
+        const string QUEUE_NAME = "ordersqueue";
+
 
         public AzureStorageExample(string connectionString)
         {
@@ -17,22 +19,24 @@ namespace StorageTableQueue
         // AZURE Storace Account: QUEUES
         public async Task QueueTestSend()
         {
+            try
+            {
 
-            const string queueName = "orders_queue";
 
-            // Inizializza il client
-            var queueClient = new QueueClient(
-                ConnectionString,
-                queueName
-                );
 
-            await queueClient.CreateIfNotExistsAsync();
+                // Inizializza il client
+                var queueClient = new QueueClient(
+                    ConnectionString,
+                    QUEUE_NAME
+                    );
 
-            // Test invio messaggio 1
-            await queueClient.SendMessageAsync("Ordine #001 - Spaghetti Carbonara");
+                await queueClient.CreateIfNotExistsAsync();
 
-            // Messaggio con struttura JSON
-            var orderJson = """
+                // Test invio messaggio 1
+                await queueClient.SendMessageAsync("Ordine #001 - Spaghetti Carbonara");
+
+                // Messaggio con struttura JSON
+                var orderJson = """
                 {
                     "orderId": "002",
                     "product": "Cacio e pepe",
@@ -41,12 +45,12 @@ namespace StorageTableQueue
                 }
                 """;
 
-            // Test invio messaggio 2
-            await queueClient.SendMessageAsync(orderJson);
+                // Test invio messaggio 2
+                await queueClient.SendMessageAsync(orderJson);
 
-            for (int count = 2; count < 100; count++)
-            {
-                orderJson = """
+                for (int count = 2; count < 100; count++)
+                {
+                    orderJson = """
                 {
                     "orderId": {orderId},
                     "product": "Cacio e pepe",
@@ -55,13 +59,19 @@ namespace StorageTableQueue
                 }
                 """.Replace("{orderId}", count.ToString().PadLeft(3, '0'));
 
-                // Messaggio consegnato ma con visibilità ritardata di 10 secondi sullo storage per la lettura
-                await queueClient.SendMessageAsync(
-                    orderJson,
-                    visibilityTimeout: TimeSpan.FromSeconds(10)
+                    // Messaggio consegnato ma con visibilità ritardata di 10 secondi sullo storage per la lettura
+                    await queueClient.SendMessageAsync(
+                        orderJson,
+                        visibilityTimeout: TimeSpan.FromSeconds(10)
 
-                 );
+                     );
 
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
 
         }
@@ -70,20 +80,20 @@ namespace StorageTableQueue
         // AZURE Storace Account: QUEUES
         public async Task QueueTestReceived()
         {
-            const string queueName = "orders_queue";
-
+            
 
             // Inizializza il client
             var queueClient = new QueueClient(
                 ConnectionString,
-                queueName
+                QUEUE_NAME
                 );
 
             try
             {
                 await queueClient.CreateAsync();
 
-                QueueMessage[] messages = await queueClient.ReceiveMessagesAsync(maxMessages: 10);
+                QueueMessage[] messages = await queueClient.ReceiveMessagesAsync(maxMessages: 30);
+                //QueueMessage[] messages = await queueClient.ReceiveMessagesAsync(maxMessages: 10);
 
                 if (messages != null && messages.Length > 0)
                 {
