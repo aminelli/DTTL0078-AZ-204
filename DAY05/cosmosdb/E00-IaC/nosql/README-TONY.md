@@ -4,6 +4,6 @@
 
 azd auth login
 
-az init --template cosmos-db-nosql-dotnet-quickstart
+azd init --template cosmos-db-nosql-dotnet-quickstart
 
 ```
