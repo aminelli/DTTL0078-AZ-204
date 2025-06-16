@@ -26,7 +26,7 @@ namespace StorageTableQueue
         const string ACCOUNT_NAME = "";
         const string ACCOUNT_KEY = "";
 
-        const string CONN_STRING_MODEL = "";
+        const string CONN_STRING_MODEL = "DefaultEndpointsProtocol=https;AccountName={yourstorageaccount};AccountKey={yourkey};EndpointSuffix=core.windows.net";
 
 
         public static async Task Main(string[] args)
@@ -39,8 +39,11 @@ namespace StorageTableQueue
 
             try
             {
-                await accountExample.QueueTestSend();
-                await accountExample.QueueTestReceived();
+                //await accountExample.QueueTestSend();
+                //await accountExample.QueueTestReceived();
+
+                await accountExample.TableTestInsert();
+                await accountExample.TableTestSelect();
             }
             catch (RequestFailedException ex)
             {
@@ -51,7 +54,7 @@ namespace StorageTableQueue
                     );
             }
 
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
 
         }
     
