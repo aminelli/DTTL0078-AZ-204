@@ -15,6 +15,7 @@ var certificate = new X509Certificate2(
     X509Certificate2.CreateFromPemFile(x509_pem, x509_key).Export(X509ContentType.Pkcs12)
 );
 
+
 var mqttClient = new MqttClientFactory().CreateMqttClient();
 
 var connAck = await mqttClient.ConnectAsync(
@@ -35,7 +36,7 @@ var connAck = await mqttClient.ConnectAsync(
 
 Console.WriteLine($"Client Connected: {mqttClient.IsConnected} ConnAck: {connAck.ResultCode} ");
 
-mqttClient.ApplicationMessageReceivedAsync += async m => await Console.Out.WriteAsync($"Rec. Msg su Topic: {m.ApplicationMessage.Topic} Payload: {m.ApplicationMessage.ConvertPayloadToString()} ");
+mqttClient.ApplicationMessageReceivedAsync += async m => await Console.Out.WriteLineAsync($"Rec. Msg su Topic: {m.ApplicationMessage.Topic} Payload: {m.ApplicationMessage.ConvertPayloadToString()} ");
 
 var suback = await mqttClient.SubscribeAsync("corsotopics/topic1");
 suback.Items.ToList().ForEach(x => Console.WriteLine($"Subscribed to Topic: {x.TopicFilter.Topic} Result: {x.ResultCode} "));
@@ -43,7 +44,10 @@ suback.Items.ToList().ForEach(x => Console.WriteLine($"Subscribed to Topic: {x.T
 ulong count = 0;
 while (true)
 {
-    var puback = await mqttClient.PublishStringAsync("corsotopics/topic1","Hello World " + count);
-    count++;
+    if (count <= 100000)
+    {
+        var puback = await mqttClient.PublishStringAsync("corsotopics/topic1", "Hello World " + count);
+        count++;
+    }
 }
 
