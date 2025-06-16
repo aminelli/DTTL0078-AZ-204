@@ -3,5 +3,5 @@
 DTTL0078-AZ-204
 
 GitHub:
-
-https://github.com/aminelli/DTTL0078-AZ-204
+- Condivisione materiale didatticohttps://github.com/aminelli/DTTL0078-AZ-204
+- Esempi microsoft sul Caching in DotNet con Redis: https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching
