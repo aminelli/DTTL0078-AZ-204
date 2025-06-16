@@ -5,3 +5,9 @@
 /DAY04/storage/StorageManagement/StorageTableQueue/obj
 /DAY05/redis/es001/bin
 /DAY05/redis/es001/obj
+/DAY05/msgs/event-grid/es001/testeventgrid/bin
+/DAY05/msgs/event-grid/es001/testeventgrid/obj
+DAY05/msgs/event-grid/es001/testeventgrid/client1-authn-ID.key
+DAY05/msgs/event-grid/es001/testeventgrid/client1-authn-ID.pem
+DAY05/msgs/event-grid/es001/testeventgrid/client2-authn-ID.key
+DAY05/msgs/event-grid/es001/testeventgrid/client2-authn-ID.pem
